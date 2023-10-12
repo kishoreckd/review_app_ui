@@ -38,19 +38,21 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    'images/avenger.jpeg',
-                    height: 180,
-                    width: 300,
-                    fit: BoxFit.cover,
+              for (int i = 1; i < 4; i++)
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      'images/av$i.jpeg',
+                      height: 180,
+                      width: 300,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              )
+                )
             ],
           ),
         )
