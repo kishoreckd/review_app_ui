@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:moviereview/pages/widgets/CustomNavBar.dart';
 import 'package:moviereview/pages/widgets/MoviePageButtons.dart';
 
-class MovieDetail extends StatefulWidget {
-  const MovieDetail({super.key});
+class MovieDetail extends StatelessWidget {
+  final list;
+  const MovieDetail({super.key, this.list});
 
-  @override
-  State<MovieDetail> createState() => _MovieDetailState();
-}
-
-class _MovieDetailState extends State<MovieDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +112,7 @@ class _MovieDetailState extends State<MovieDetail> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Avengers',
+                          list['original_title'],
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
@@ -125,8 +121,16 @@ class _MovieDetailState extends State<MovieDetail> {
                         SizedBox(
                           height: 15,
                         ),
+                        Column(
+                          children: [
+                            Text(
+                              'Synopsis',
+                              style: TextStyle(color: Colors.white54),
+                            )
+                          ],
+                        ),
                         Text(
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                          list['overview'],
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,

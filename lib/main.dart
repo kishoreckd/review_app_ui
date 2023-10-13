@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         // '/': (context) => Loading(),
         '/': (context) => Homepage(),
-        '/moviePage': (context) => MovieDetail(),
+        // '/moviePage': (context) => MovieDetail(),
       },
     );
   }

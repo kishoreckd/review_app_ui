@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:moviereview/pages/MovieDetail.dart';
 
 class NewMoviesWidget extends StatefulWidget {
   const NewMoviesWidget({super.key});
@@ -79,7 +80,11 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
               for (int i = 0; i < listResponses.length; i++)
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, '/moviePage');
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => MovieDetail(
+                              list: listResponses[i],
+                            )));
+                    // Navigator.pushNamed(context, '/moviePage');
                   },
                   child: Container(
                     width: 190,
