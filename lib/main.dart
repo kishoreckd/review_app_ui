@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moviereview/pages/homepage.dart';
+import 'package:moviereview/pages/MovieDetail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(scaffoldBackgroundColor: Color(0XFF0F11)),
       routes: {
         '/': (context) => Homepage(),
+        '/moviePage': (context) => MovieDetail(),
       },
     );
   }

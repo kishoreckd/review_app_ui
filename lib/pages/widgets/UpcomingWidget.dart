@@ -12,7 +12,7 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +55,7 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
                 )
             ],
           ),
-        )
+        ),
       ],
     );
   }
