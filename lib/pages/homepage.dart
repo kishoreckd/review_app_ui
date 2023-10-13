@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:moviereview/services/apiservice.dart';
 import 'package:moviereview/pages/widgets/CustomNavBar.dart';
 import 'package:moviereview/pages/widgets/UpcomingWidget.dart';
 import 'package:moviereview/pages/widgets/NewMoviesWidget.dart';
@@ -11,6 +14,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

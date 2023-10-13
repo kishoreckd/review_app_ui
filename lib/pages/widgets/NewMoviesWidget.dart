@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class NewMoviesWidget extends StatefulWidget {
@@ -8,6 +9,40 @@ class NewMoviesWidget extends StatefulWidget {
 }
 
 class _NewMoviesWidgetState extends State<NewMoviesWidget> {
+  late List listResponses = [];
+
+  void setUpData() async {
+    var headers = {
+      'Authorization':
+          'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNzQ2N2FkNzFjZjQ0MDViMzJmNDk1MTIzNmFkOTlhMiIsInN1YiI6IjY1MjY4M2E2ZWE4NGM3MDBjYTBlOWM3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VFOAOgt88QL_M3zEq31KQRNjO5jUI8i0DYS2VBeE5Wo'
+    };
+    var dio = Dio();
+    var response = await dio.request(
+      'https://api.themoviedb.org/3/movie/top_rated?language=en-US&api_key=d7467ad71cf4405b32f4951236ad99a2',
+      options: Options(
+        method: 'GET',
+        headers: headers,
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      listResponses = response.data["results"];
+      print(listResponses);
+
+      // print(json.encode(response.data));
+    } else {
+      print(response.statusMessage);
+    }
+    // await instance.getData();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setUpData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +76,7 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              for (int i = 1; i < 5; i++)
+              for (int i = 0; i < listResponses.length; i++)
                 InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, '/moviePage');
@@ -66,7 +101,7 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10)),
                           child: Image.asset(
-                            'images/av$i.jpeg',
+                            'images/av1.jpeg',
                             height: 200,
                             width: 200,
                             fit: BoxFit.cover,
@@ -79,17 +114,18 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Movie Title',
+                                  listResponses[i]['original_title'],
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 21,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
                                 SizedBox(
                                   height: 5,
                                 ),
                                 Text(
-                                  'Action/Adventure',
+                                  listResponses[i]['release_date'],
                                   style: TextStyle(
                                       color: Colors.white54,
                                       fontSize: 15,
@@ -105,7 +141,8 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
                                       color: Colors.amber,
                                     ),
                                     Text(
-                                      '9.2',
+                                      listResponses[i]['vote_average']
+                                          .toString(),
                                       style: TextStyle(
                                           color: Colors.white54, fontSize: 16),
                                     )
