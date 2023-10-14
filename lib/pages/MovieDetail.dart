@@ -18,8 +18,8 @@ class MovieDetail extends StatelessWidget {
           children: [
             Opacity(
               opacity: 0.7,
-              child: Image.asset(
-                'images/av1.jpeg',
+              child: Image.network(
+                "https://image.tmdb.org/t/p/original/${list['poster_path']}",
                 height: 250,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -74,8 +74,8 @@ class MovieDetail extends StatelessWidget {
                               ]),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'images/av1.jpeg',
+                            child: Image.network(
+                              "https://image.tmdb.org/t/p/original/${list['poster_path']}",
                               height: 250,
                               width: 180,
                               fit: BoxFit.cover,

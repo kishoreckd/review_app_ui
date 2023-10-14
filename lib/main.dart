@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moviereview/pages/loading.dart';
 import 'package:moviereview/pages/homepage.dart';
 import 'package:moviereview/pages/MovieDetail.dart';
 

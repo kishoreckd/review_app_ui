@@ -19,20 +19,19 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
     };
     var dio = Dio();
     var response = await dio.request(
-      'https://api.themoviedb.org/3/movie/top_rated?language=en-US&api_key=d7467ad71cf4405b32f4951236ad99a2',
+      'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=d7467ad71cf4405b32f4951236ad99a2',
       options: Options(
         method: 'GET',
         headers: headers,
       ),
     );
-
     if (response.statusCode == 200) {
       listResponses = response.data["results"];
-      print(listResponses);
+      // print(listResponses);
 
       // print(json.encode(response.data));
     } else {
-      print(response.statusMessage);
+      // print(response.statusMessage);
     }
     // await instance.getData();
   }
@@ -105,8 +104,8 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10)),
-                          child: Image.asset(
-                            'images/av1.jpeg',
+                          child: Image.network(
+                            "https://image.tmdb.org/t/p/original/${listResponses[i]['poster_path']}",
                             height: 200,
                             width: 200,
                             fit: BoxFit.cover,
@@ -166,3 +165,8 @@ class _NewMoviesWidgetState extends State<NewMoviesWidget> {
     );
   }
 }
+
+
+// else {
+//             return Center(child: CircularProgressIndicator());
+//           }
